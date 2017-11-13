@@ -2,10 +2,10 @@
 學習筆記
 
 ## 目錄
-* [RESTfulAPI定義](#RESTfulAPI定義)
-* [RESTfulAPI好處](#RESTfulAPI好處)
-* [RESTfulAPI範例](#RESTfulAPI範例)
-* [使用JSONServer建立假RESTfulAPI](#使用JSONServer建立假RESTfulAPI)
+* [RESTfulAPI定義](#RESTful API定義)
+* [RESTfulAPI好處](#RESTful API好處)
+* [RESTfulAPI範例](#RESTful API範例)
+* [使用JSONServer建立假RESTfulAPI](#使用JSON Server建立假RESTful API)
 
 
 ## 資料來源：
