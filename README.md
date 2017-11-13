@@ -2,16 +2,16 @@
 學習筆記
 
 ## 目錄
-* [RESTfulAPI定義](#RESTful API定義)
-* [RESTfulAPI好處](#RESTful API好處)
-* [RESTfulAPI範例](#RESTful API範例)
-* [使用JSONServer建立假RESTfulAPI](#使用JSON Server建立假RESTful API)
+* [RESTfulAPI定義](#RESTfulAPI定義)
+* [RESTfulAPI好處](#RESTfulAPI好處)
+* [RESTfulAPI範例](#RESTfulAPI範例)
+* [使用JSONServer建立假RESTfulAPI](#使用JSONServer建立假RESTfulAPI)
 
 
 ## 資料來源：
 * 從無到有打造 RESTful API service 系列 https://ithelp.ithome.com.tw/articles/10157431
 
-### RESTful API定義
+### RESTfulAPI定義
 > 一般API
 ``` bash
 取得：
@@ -37,7 +37,7 @@
 結論：   
 > RESTful 是 API 的一種(設計風格？)
 
-### RESTful API好處
+### RESTfulAPI好處
 * 使用 HTTP 協定, 各平台都支援
 <!-- 備份 -->
 <!-- RESTful 的優點如下所列:
@@ -66,7 +66,7 @@ client-side: 透過 client 端 cache 記錄 cache 版本，
 統一界面
 使用 HTTP Verb: GET/POST/PUT/DELETE -->
 
-### RESTful API範例
+### RESTfulAPI範例
 * Twitter Public API https://developer.twitter.com/en/docs/tweets/post-and-engage/overview
 
-### 使用JSON Server建立假RESTful API
+### 使用JSONServer建立假RESTfulAPI
