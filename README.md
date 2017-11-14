@@ -52,7 +52,7 @@ gulp.task('jsonServer', () => {
 })
 
 最後 default 加入 jsonServer
-gulp.task('default', ['sass','watch','connect','reload','jsonServer']);
+gulp.task('default', ['sass','connect','reload','jsonServer','watch']);
 ```
 gulp 執行後便會有兩個本機伺服器
 localhost:8000 ==> 執行網頁的地方
