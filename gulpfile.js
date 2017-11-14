@@ -39,6 +39,7 @@ gulp.task('sass',() => {
 gulp.task('watch', () => {
   gulp.watch('./sass/*.sass', ['sass','reload']);
   gulp.watch(['./js/*.js','./*.html'], ['reload']);
+  gulp.watch(['./db.json'],['jsonServer','reload']);
 })
 
 // Default

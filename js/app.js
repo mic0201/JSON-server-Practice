@@ -43,7 +43,18 @@ var vm = new Vue({
         url: `http://localhost:3000/content/${id}`,
         type: 'DELETE',
         success: (res) => {
-          $(`[data-index = ${id}]`).remove();
+          $.ajax({
+            url: 'http://localhost:3000/db',
+            type: 'GET',
+            success: (res) => {
+              vm.$nextTick(function(){                
+                this.content = res.content;
+              })
+            },
+            error: () => {
+              console.log("ERROR!")
+            }
+          })
           alert("刪除成功")
         },
         error: () => {
@@ -54,23 +65,13 @@ var vm = new Vue({
   },
   mounted: function() {
     var self = this;
-    // 取得標題
+    // 取得資料
     $.ajax({
-      url: 'http://localhost:3000/detail',
+      url: 'http://localhost:3000/db',
       type: 'GET',
       success: (res) => {
-        self.detail = res;
-      },
-      error: () => {
-        console.log("ERROR!");
-      }
-    })
-    // 取得內容
-    $.ajax({
-      url: 'http://localhost:3000/content',
-      type: 'GET',
-      success: (res) => {
-        self.content = res;
+        self.detail = res.detail;
+        self.content = res.content;
       },
       error: () => {
         console.log("ERROR!");

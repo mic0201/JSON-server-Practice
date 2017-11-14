@@ -118,3 +118,41 @@ client-side: 透過 client 端 cache 記錄 cache 版本，
 * Twitter Public API https://developer.twitter.com/en/docs/tweets/post-and-engage/overview
 
 ### 使用JSONServer建立假RESTfulAPI
+
+### vue 更新data問題
+* 使用 vm.$nextTick()
+> 資料來源： 官方文件 https://012-cn.vuejs.org/guide/best-practices.html     
+執行 delContent 刪除資料 => 成功後, 重新 GET 一次更新後資料    
+使用一般的   
+``` bash
+ this.content = res.content
+ 不會將 data 內的 content 更新
+ 要使用 vm.$nextTick()
+```
+以下完整jS
+``` bash
+    delContent: (id) => {
+      $.ajax({
+        url: `http://localhost:3000/content/${id}`,
+        type: 'DELETE',
+        success: (res) => {
+          $.ajax({
+            url: 'http://localhost:3000/db',
+            type: 'GET',
+            success: (res) => {
+              vm.$nextTick(function(){                
+                this.content = res.content;
+              })
+            },
+            error: () => {
+              console.log("ERROR!")
+            }
+          })
+          alert("刪除成功")
+        },
+        error: () => {
+          alert("ERROR!")
+        }
+      })
+    }
+```
