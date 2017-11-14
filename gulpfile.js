@@ -2,19 +2,19 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var connect = require('gulp-connect');
 var jsonServer = require('gulp-json-srv');
+var serverReload = require("gulp-server-livereload");
 
 // 設定 jsonServer
 var server = jsonServer.create();
 gulp.task('jsonServer', () => {
   return gulp.src('db.json')
-    .pipe(server.pipe());
+    .pipe(server.pipe())
 })
 
 // 設定Server
 gulp.task('connect',() => {
   connect.server({
     root: './',
-    port: 8000,
     livereload: true
   });
 })
@@ -43,4 +43,4 @@ gulp.task('watch', () => {
 })
 
 // Default
-gulp.task('default', ['sass','watch','connect','reload','jsonServer']);
+gulp.task('default', ['sass','connect','reload','jsonServer','watch']);
