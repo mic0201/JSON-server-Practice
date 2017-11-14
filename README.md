@@ -9,6 +9,7 @@
 
 
 ## 資料來源：
+* JSON - Server 不會寫入 db.json https://github.com/typicode/json-server/issues/64
 * gulpAPI https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb
 * 從無到有打造 RESTful API service 系列 https://ithelp.ithome.com.tw/articles/10157431
 
