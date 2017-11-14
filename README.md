@@ -9,7 +9,54 @@
 
 
 ## 資料來源：
+* gulpAPI https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb
 * 從無到有打造 RESTful API service 系列 https://ithelp.ithome.com.tw/articles/10157431
+
+## Gulp
+> 先建立 gulpfile.js 方便範例進行
+* 使用 gulp-sass 的 cssrest 
+``` bash
+sass：
+  @import '_rest'
+gulpfile.js：
+  var sass = require('gulp-sass')
+  gulp.task('sass',() => {
+    return gulp.src('./sass/*.sass')
+      .pipe(sass({ 
+        outputStyle: 'compressed',
+        includePaths: require('node-reset-scss').includePath
+      }).on('error', sass.logError))
+      .pipe(gulp.dest('./css'))
+  });
+```
+* 創建伺服器
+``` bash
+gulp.task('connect',() => {
+  connect.server({
+    root: './',
+    port: 8000,
+    livereload: true
+  });
+})
+```
+* 結合 json server
+``` bash
+var jsonServer = require('gulp-json-srv');
+
+var server = jsonServer.create();
+
+gulp.task('jsonServer', () => {
+  return gulp.src('db.json')
+    .pipe(server.pipe());
+})
+
+最後 default 加入 jsonServer
+gulp.task('default', ['sass','watch','connect','reload','jsonServer']);
+```
+gulp 執行後便會有兩個本機伺服器
+localhost:8000 ==> 執行網頁的地方
+localhost:3000 ==> db.json
+
 
 ### RESTfulAPI定義
 > 一般API
@@ -39,6 +86,7 @@
 
 ### RESTfulAPI好處
 * 使用 HTTP 協定, 各平台都支援
+* 待補充
 <!-- 備份 -->
 <!-- RESTful 的優點如下所列:
 

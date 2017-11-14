@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js'></script>
+  <script src="./js/app.js" defer></script>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <div id="page">
+        <div class="title">
+          <h2>{{ detail.title }}</h2>
+          <input type="hidden" name="title" v-model="detail.title" :value="detail.title">
+          <time>{{ detail.time }}</time>
+          <input type="hidden" name="time" v-model="detail.time" :value="detail.time">
+        </div>
+        <div class="content">
+          <ul>
+            <li v-for="c in content" :data-index="c.id">
+              {{ c.info }}
+              <div class="btn" @click="changeContent(c.id)"><span>修改</span></div>              
+              <div class="btn" @click="delContent(c.id)"><span>刪除</span></div>
+              <input type="hidden" :name=`change${c.id}` v-model="content[c.id]" :value="c">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="intro">
+        <h1></h1>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

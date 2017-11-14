@@ -1,19 +1,14 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "detail":{
+    "title": "備忘錄",
+    "time": "2017/11/11"
+  },
+  "content": [
+    { "id": 1, "info": "假資料1" },
+    { "id": 2, "info": "假資料2" },
+    { "id": 3, "info": "假資料3" },
+    { "id": 4, "info": "假資料4" },
+    { "id": 5, "info": "假資料5" },
+    { "id": 6, "info": "假資料6" }
+  ]
 }
