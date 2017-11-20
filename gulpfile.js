@@ -5,9 +5,11 @@ var jsonServer = require('gulp-json-srv');
 var serverReload = require("gulp-server-livereload");
 
 // 設定 jsonServer
-var server = jsonServer.create();
+var server = jsonServer.create({
+  router: './db.json'
+});
 gulp.task('jsonServer', () => {
-  return gulp.src('db.json')
+  return gulp.src('./db.json')
     .pipe(server.pipe())
 })
 
@@ -43,4 +45,4 @@ gulp.task('watch', () => {
 })
 
 // Default
-gulp.task('default', ['sass','connect','reload','jsonServer','watch']);
+gulp.task('default', ['sass','connect','jsonServer','reload','watch']);

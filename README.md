@@ -9,7 +9,7 @@
 
 
 ## 資料來源：
-* JSON - Server 不會寫入 db.json https://github.com/typicode/json-server/issues/64
+* JSON - Server 不會寫入 db.json https://github.com/typicode/json-server/issues/64 (解決方法：[JSON-Server寫入file問題](#JSON-Server寫入file問題))
 * gulpAPI https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb
 * 從無到有打造 RESTful API service 系列 https://ithelp.ithome.com.tw/articles/10157431
 
@@ -119,6 +119,59 @@ client-side: 透過 client 端 cache 記錄 cache 版本，
 * Twitter Public API https://developer.twitter.com/en/docs/tweets/post-and-engage/overview
 
 ### 使用JSONServer建立假RESTfulAPI
+
+### JSON-Server寫入file問題
+* 使用json server進行新增修改刪除時, localhost:3000可以看到資料有變動, 但實際的db.json並沒有修改到  
+> 未修改前的gulpfile.js
+``` bash
+  // 設定 jsonServer
+  var server = jsonServer.create({
+    router: './db.json' ===> jsonfile路徑
+  });
+  gulp.task('jsonServer', () => {
+    return gulp.src('./db.json')
+      .pipe(server.pipe())
+  })
+```
+> gulp-json-srv內的options
+``` bash
+	this.options = {
+		port: 3000,
+		rewriteRules: null,
+		customRoutes: null,
+		baseUrl: null,
+		router: null, =====> 自己新增
+		id: 'id',
+		static: null,
+		cumulative: false,
+		cumulativeSession: true,
+		verbosity: {
+			level: "error",
+			urlTracing: true
+		}
+	};
+```
+> gulp-json-srv內router相關function
+``` bash
+     <==========>
+    var router = jsonServer.router(data || this.options.data);
+        修改成
+    var router = this.options.router? jsonServer.router(this.options.router):jsonServer.router(data || this.options.data);
+     <==========>
+  if(this.options.baseUrl) {
+    server.use(this.options.baseUrl, router);
+  }
+  else{
+    server.use(router);
+  }
+```
+* 結論：
+``` bash
+    找不到地方去塞入router的路徑, 加上看不懂gulp-json-srv內router相關的執行方式   
+    因此自訂一個router在options內, 再由gulpfile.js將路徑傳入    
+    為了保持原本的function, 所以在 var router 做一個判斷
+    如果有設定router, 則使用router的路徑, 沒有設定則不影響原本function的執行
+```
 
 ### vue 更新data問題
 * 使用 vm.$nextTick()
