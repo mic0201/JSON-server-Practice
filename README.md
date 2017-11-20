@@ -122,7 +122,7 @@ client-side: 透過 client 端 cache 記錄 cache 版本，
 
 ### JSON-Server寫入file問題
 * 使用json server進行新增修改刪除時, localhost:3000可以看到資料有變動, 但實際的db.json並沒有修改到  
-> 未修改前的gulpfile.js
+> gulpfile.js
 ``` bash
   // 設定 jsonServer
   var server = jsonServer.create({
